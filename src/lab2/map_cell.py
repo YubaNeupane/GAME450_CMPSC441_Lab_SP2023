@@ -23,3 +23,28 @@ Your task is to write a function that can translate from strings of length 2 to 
 
 For example, calling get_row_col("A3") should return the tuple (2, 0) because A3 corresponds to the row at index 2 and column at index 0in the board.
 '''
+
+board = [
+    ["X", "O", "X"],
+    [" ", " ", " "],
+    ["O", " ", " "],
+]
+
+def get_row_col(cell: str)->tuple:
+    col = ord(cell[0]) - 65
+    row = int(cell[1])-1
+
+
+    return (row,col)
+
+def print_board(board):
+    print("__| A ,  B ,  C |")
+    for i, row in enumerate(board):
+        print(f"{i+1} {row}")
+
+
+print_board(board)
+cell = input("Enter Cell: ")
+cell = cell.upper()
+
+print(get_row_col(cell))
