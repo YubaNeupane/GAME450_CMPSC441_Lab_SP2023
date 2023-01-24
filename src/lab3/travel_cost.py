@@ -2,16 +2,20 @@
 Lab 3: Travel Cost
 
 Your player will need to move from one city to another in order to complete the game.
-The player will have to spend money to travel between cities. The cost of travel depends 
+The player will have to spend money to travel between cities. The cost of travel depends
 on the difficulty of the terrain.
 In this lab, you will write a function that calculates the cost of a route between two cities,
-A terrain is generated for you 
+A terrain is generated for you
 '''
 import numpy as np
+from pathfinding.core.diagonal_movement import DiagonalMovement
+from pathfinding.core.grid import Grid
+from pathfinding.finder.a_star import AStarFinder
+
 
 def get_route_cost(route_coordinate, game_map):
     """
-    This function takes in a route_coordinate as a tuple of coordinates of cities to connect, 
+    This function takes in a route_coordinate as a tuple of coordinates of cities to connect,
     example:  and a game_map as a numpy array of floats,
     remember from previous lab the routes looked like this: [(A, B), (A, C)]
     route_coordinates is just inserts the coordinates of the cities into a route like (A, C).
@@ -26,9 +30,9 @@ def get_route_cost(route_coordinate, game_map):
       |-----------|
     3 |   | C |   |
       -------------
-        I   J   K 
+        I   J   K
 
-    Cost between cities A and C is the sum of the costs of the cells 
+    Cost between cities A and C is the sum of the costs of the cells
         I1, I2, J2 and J3.
     Alternatively you could use a direct path from A to C that uses diagonal movement, like
         I1, J2, J3
@@ -39,7 +43,18 @@ def get_route_cost(route_coordinate, game_map):
     :return: a floating point number representing the cost of the route
     """
     # Build a path from start to end that looks like [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 4)]
-    pass 
+    #
+
+    square = max(game_map.shape[0], game_map.shape[1])
+
+    grid = Grid(width=square, height=square)
+
+    start = grid.node(route_coordinate[0][0], route_coordinate[0][1])
+    end = grid.node(route_coordinate[1][0], route_coordinate[1][1])
+
+    finder = AStarFinder(diagonal_movement=DiagonalMovement.always, weight=1)
+    path, _ = finder.find_path(start, end, grid)
+
     return game_map[tuple(zip(*path))].sum()
 
 
@@ -65,7 +80,7 @@ def main():
     sys.path.append(str((Path(__file__)/'..'/'..').resolve().absolute()))
     from lab2.cities_n_routes import get_randomly_spread_cities, get_routes
 
-    city_names = ['Morkomasto', 'Morathrad', 'Eregailin', 'Corathrad', 'Eregarta', 
+    city_names = ['Morkomasto', 'Morathrad', 'Eregailin', 'Corathrad', 'Eregarta',
                   'Numensari', 'Rhunkadi', 'Londathrad', 'Baernlad', 'Forthyr']
     map_size = 300, 200
 
@@ -77,10 +92,12 @@ def main():
     routes = get_routes(city_names)
     np.random.shuffle(routes)
     routes = routes[:10]
-    route_coordinates = route_to_coordinates(city_locations, city_names, routes)
+    route_coordinates = route_to_coordinates(
+        city_locations, city_names, routes)
 
     for route, route_coordinate in zip(routes, route_coordinates):
-        print(f'Cost between {route[0]} and {route[1]}: {get_route_cost(route_coordinate, game_map)}')
+        print(
+            f'Cost between {route[0]} and {route[1]}: {get_route_cost(route_coordinate, game_map)}')
 
 
 if __name__ == '__main__':

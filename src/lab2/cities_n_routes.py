@@ -39,7 +39,7 @@ def get_routes(cities):
             each item in the list (a link) represents a route between two cities.
     """
     links = []
-    for combination in itertools.combinations(city_names, 2):
+    for combination in itertools.combinations(cities, 2):
         links.append(combination)
 
     return links
