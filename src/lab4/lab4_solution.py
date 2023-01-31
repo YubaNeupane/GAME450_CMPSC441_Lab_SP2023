@@ -50,6 +50,12 @@ class AiPlayer(Player):
         if (len(self.opponent_choices) == 0):
             return self.initial_weapon
 
+        if (len(self.opponent_choices) >= 2):
+            lastThreeOppChoices = self.opponent_choices[-2:]
+
+            if (lastThreeOppChoices[0] == lastThreeOppChoices[1]):
+                return ((self.opponent_choices[-1]+1) % 3)
+
         if (len(self.opponent_choices) >= 4):
             lastThreeOppChoices = self.opponent_choices[-4:]
             playerLastThreeChoices = self.my_choices[-4:]
