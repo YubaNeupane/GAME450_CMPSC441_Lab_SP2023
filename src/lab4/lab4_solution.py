@@ -38,24 +38,37 @@ and 2 points for beating the mimic agent.
 from rock_paper_scissor import Player
 from rock_paper_scissor import run_game
 from rock_paper_scissor import random_weapon_select
+import numpy as np
+
 
 class AiPlayer(Player):
     def __init__(self, name):
         super().__init__(name)
         self.initial_weapon = random_weapon_select()
-    
+
     def weapon_selecting_strategy(self):
-        pass
+        if (len(self.opponent_choices) == 0):
+            return self.initial_weapon
+
+        if (len(self.opponent_choices) >= 4):
+            lastThreeOppChoices = self.opponent_choices[-4:]
+            playerLastThreeChoices = self.my_choices[-4:]
+
+            if (playerLastThreeChoices[0] == lastThreeOppChoices[1] and playerLastThreeChoices[1] == lastThreeOppChoices[2] and playerLastThreeChoices[2] == lastThreeOppChoices[3]):
+                return ((self.my_choices[-1]+1) % 3)
+
+        return ((self.opponent_choices[-1]+1) % 3)
 
 
 if __name__ == '__main__':
     final_tally = [0]*3
     for agent in range(3):
         for i in range(100):
-            tally = [score for _, score in run_game(AiPlayer("AI"), 100, agent)]
+            tally = [score for _, score in run_game(
+                AiPlayer("AI"), 100, agent)]
             if sum(tally) == 0:
                 final_tally[agent] = 0
             else:
-            final_tally[agent] += tally[0]/sum(tally)
+                final_tally[agent] += tally[0]/sum(tally)
 
-    print("Final tally: ", final_tally)  
+    print("Final tally: ", final_tally)
