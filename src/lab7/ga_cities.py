@@ -10,6 +10,7 @@ and then use it to generate a population of cities.
 Please comment your code in the fitness function to explain how are you making sure each criterion is 
 fulfilled. Clearly explain in comments which line of code and variables are used to fulfill each criterion.
 """
+import math
 import matplotlib.pyplot as plt
 import pygad
 import numpy as np
@@ -20,6 +21,49 @@ from pathlib import Path
 sys.path.append(str((Path(__file__) / ".." / ".." / "..").resolve().absolute()))
 
 from src.lab5.landscape import elevation_to_rgba
+from src.lab5.landscape import get_elevation
+
+
+def checkInWater(elevaltion):
+    #checks elevation and sees if the elevation is less than then or equal to .57, then we know its on top of water therefore we give it a less fitness value
+    if (elevaltion <= 0.57):
+        return  0.000000001
+    
+    return 0.001
+
+
+def checkDistribution(currentCity, otherCityes):
+    fitness = 0;
+    #checks the distance between the current and the other cities and if its less then 30 units away it gives it a less fitness score 
+    for (otherX, otherY) in otherCityes:
+        distance = math.sqrt(((otherX - currentCity[0]) ** 2)+((otherY-currentCity[1]) ** 2));
+        if(distance <= 30):
+            fitness =  0.000000001
+        else:
+             fitness += 0.01
+        
+    return fitness
+
+
+def checkInMountain(elevaltion):
+    #checks elevation and sees if the elevation is greater then or equal to .68, then we know its on top of mountain therefore we give it a less fitness value
+    if (elevaltion >= 0.68):
+        return  0.000000001
+    
+    return 0.001
+
+def checkOverLap(currentCity, otherCityes):
+    fitness = 0;
+    
+    #checks the distance between the current and the other cities and if its less then 10 units away it gives it a less fitness score
+    for (otherX, otherY) in otherCityes:
+        distance = math.sqrt(((otherX - currentCity[0]) ** 2)+((otherY-currentCity[1]) ** 2));
+        if(distance <= 10):
+            return 0.00000000001
+        else:
+             fitness += 0.01
+        
+    return fitness
 
 
 def game_fitness(cities, idx, elevation, size):
@@ -30,6 +74,15 @@ def game_fitness(cities, idx, elevation, size):
     2. The cities should have a realistic distribution across the landscape
     3. The cities may also not be on top of mountains or on top of each other
     """
+    
+    cityLocation = solution_to_cities(cities, size)
+    for (x,y) in cityLocation:
+        fitness += checkInWater(elevation[x][y]) # used to check if the city is on top of water (criteria 1)
+        fitness += checkDistribution((x,y),cityLocation) # used to give the cities a  ealistic distribution across the landscape(criteria 2)
+        fitness += checkInMountain(elevation[x][y]) # used to check if the city is on top of mountine (criteria 3)
+        fitness += checkOverLap((x,y),cityLocation) # used to check if the city is on top of another city (criteria 3)
+
+
     return fitness
 
 
@@ -43,10 +96,10 @@ def setup_GA(fitness_fn, n_cities, size):
     :param size: The size of the grid
     :return: The fitness function and the GA instance.
     """
-    num_generations = 100
+    num_generations = 300
     num_parents_mating = 10
 
-    solutions_per_population = 300
+    solutions_per_population = 500
     num_genes = n_cities
 
     init_range_low = 0
@@ -58,7 +111,7 @@ def setup_GA(fitness_fn, n_cities, size):
     crossover_type = "single_point"
 
     mutation_type = "random"
-    mutation_percent_genes = 10
+    mutation_percent_genes = 20
 
     ga_instance = pygad.GA(
         num_generations=num_generations,
@@ -114,7 +167,8 @@ if __name__ == "__main__":
     size = 100, 100
     n_cities = 10
     elevation = []
-    """ initialize elevation here from your previous code"""
+    """ initialize elevation here from your previous code""" 
+    elevation = get_elevation(size);
     # normalize landscape
     elevation = np.array(elevation)
     elevation = (elevation - elevation.min()) / (elevation.max() - elevation.min())
