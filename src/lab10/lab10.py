@@ -7,10 +7,7 @@ You can usually improve the model by normalizing the input data. Try that and se
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import ConfusionMatrixDisplay
-
-from sklearn.neural_network import MLPClassifier
 import matplotlib.pyplot as plt
 
 import pandas as pd
