@@ -96,7 +96,8 @@ if __name__ == "__main__":
 
     player_sprite = Sprite(sprite_path, cities[start_city])
 
-    player = PyGameHumanPlayer()
+    # player = PyGameHumanPlayer()
+    player = PyGameAIPlayer()
 
     """ Add a line below that will reset the player variable to 
     a new object of PyGameAIPlayer class."""
@@ -109,6 +110,8 @@ if __name__ == "__main__":
         cities=cities,
         routes=routes,
     )
+    
+    print(state.cities)
 
     while True:
         action = player.selectAction(state)

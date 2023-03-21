@@ -5,6 +5,7 @@ from sprite import Sprite
 from turn_combat import CombatPlayer, Combat
 from pygame_ai_player import PyGameAICombatPlayer
 from pygame_human_player import PyGameHumanCombatPlayer
+from pygame_ai_player import PyGameAICombatPlayer
 
 AI_SPRITE_PATH = Path("assets/ai.png")
 
@@ -28,7 +29,7 @@ class PyGameComputerCombatPlayer(CombatPlayer):
 
 def run_pygame_combat(combat_surface, screen, player_sprite):
     currentGame = Combat()
-    player = PyGameHumanCombatPlayer("Legolas")
+    player = PyGameAICombatPlayer("AI-BOB Player")
     """ Add a line below that will reset the player object
     to an instance of the PyGameAICombatPlayer class"""
 
