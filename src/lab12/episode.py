@@ -11,3 +11,34 @@ Note that observation/state is a tuple of the form (player1_health, player2_heal
 Action is simply the weapon selected by the player.
 Reward is the reward for the player for that turn.
 '''
+
+import sys;
+from pathlib import Path
+import typing
+
+sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
+
+from lab11.pygame_combat import run_turn, PyGameComputerCombatPlayer;
+from lab11.turn_combat import Combat
+from lab11.pygame_ai_player import PyGameAICombatPlayer
+
+
+currentGame = Combat()
+
+player = PyGameAICombatPlayer("AI-BOB Player")
+opponent = PyGameComputerCombatPlayer("Computer")
+
+
+def run_episode()->typing.List[tuple]:
+    
+    episodeHistory = []
+
+    while player.health > 0 :
+        (player_health, opponent_health, reward) = run_turn(currentGame,player,opponent)
+        episodeHistory.append(((player_health, opponent_health),player.action, reward))
+    
+    return episodeHistory;
+    
+
+print(run_episode())
+
