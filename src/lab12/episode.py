@@ -23,22 +23,23 @@ from lab11.turn_combat import Combat
 from lab11.pygame_ai_player import PyGameAICombatPlayer
 
 
-currentGame = Combat()
-
-player = PyGameAICombatPlayer("AI-BOB Player")
-opponent = PyGameComputerCombatPlayer("Computer")
 
 
-def run_episode()->typing.List[tuple]:
+def run_episode(player1, player2):
     
     episodeHistory = []
+    currentGame = Combat()
 
-    while player.health > 0 :
-        (player_health, opponent_health, reward) = run_turn(currentGame,player,opponent)
-        episodeHistory.append(((player_health, opponent_health),player.action, reward))
+    while (currentGame.gameOver == False):
+        if(player2.health <= 0 or player1.health <= 0 ): break
+                
+        pHealth = player1.health;
+        oHealth = player2.health;
+        (_, _, reward) = run_turn(currentGame,player1,player2)
+        
+        episodeHistory.append(((pHealth, oHealth),player1.action, reward))
     
     return episodeHistory;
     
 
-print(run_episode())
 
