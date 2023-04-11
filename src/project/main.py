@@ -1,11 +1,11 @@
 import sys
 from pathlib import Path
 
-# line taken from turn_combat.py
-sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
 
 from window import Window
 import pygame
+
+
 
 gameWindow = Window((800,800))
 
