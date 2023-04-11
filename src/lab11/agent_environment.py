@@ -1,15 +1,17 @@
 import sys
-import pygame
-import random
-from sprite import Sprite
-from pygame_combat import run_pygame_combat
-from pygame_human_player import PyGameHumanPlayer
-from landscape import get_landscape, get_combat_bg
-from pygame_ai_player import PyGameAIPlayer
-
 from pathlib import Path
 
 sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
+
+import pygame
+import random
+from lab11.sprite import Sprite
+from lab11.pygame_combat import run_pygame_combat
+from lab11.pygame_human_player import PyGameHumanPlayer
+from lab11.landscape import get_landscape, get_combat_bg
+from lab11.pygame_ai_player import PyGameAIPlayer
+
+
 
 from lab2.cities_n_routes import get_randomly_spread_cities, get_routes
 
