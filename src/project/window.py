@@ -62,7 +62,6 @@ class Window:
         windowObjects.append(quitGameButton)
         
     def quitGameFunction(self):
-        self.generateTerrainThread.join()
         pygame.quit()
         
     def startGameFunction(self):
