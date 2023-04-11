@@ -8,7 +8,6 @@ import pygame
 from GameManager import GameManager
 
 
-
 gameManager = GameManager()
 gameWindow = Window((800,800), gameManager)
 
@@ -20,7 +19,7 @@ def startPyGameLoop():
                 gameWindow.isRunning = False
             
             gameWindow.process()
-
+            
 
 if __name__ == "__main__":
     startPyGameLoop()

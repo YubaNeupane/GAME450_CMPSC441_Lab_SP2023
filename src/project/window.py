@@ -33,6 +33,8 @@ class Window:
         print("Generating Combat Surface...")
         self.generateCombatSurface()
         
+        self.generateCityAndLinks()
+        
         self.makeButtons()
  
         
@@ -63,9 +65,12 @@ class Window:
         
     def generateCityAndLinks(self):
         print("Generating cities and links...")
+        self.gameManager.generateCityNames(10)
+        self.gameManager.generateCityLinks((self.dim[0],650))
             
     def drawCityAndLinks(self):
         print("Drawing cities and links...")
+        
     
     
     #RUN THE GAME EVERY FRAME
@@ -73,8 +78,8 @@ class Window:
         for object in windowObjects:
             object.process(self.screen)
         
-        self.screen.blit(self.combat_surface, (0, 0))
-        self.drawCityAndLinks()
+        self.screen.blit(self.game_surface, (0, 0))
+        # self.drawCityAndLinks()
         
         pygame.display.update()
         
