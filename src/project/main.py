@@ -5,9 +5,12 @@ from pathlib import Path
 from window import Window
 import pygame
 
+from GameManager import GameManager
 
 
-gameWindow = Window((800,800))
+
+gameManager = GameManager()
+gameWindow = Window((800,800), gameManager)
 
 def startPyGameLoop():
     while gameWindow.isRunning:

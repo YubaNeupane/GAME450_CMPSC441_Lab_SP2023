@@ -12,14 +12,10 @@ sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
 from lab11.agent_environment import get_landscape_surface, get_combat_surface
 from project.GameManager import GameManager
 
-
 (width, height) = (300,200)
 background_color = (0,0,0)
 
 windowObjects = [];
-
-
-
 
 
 class Window:
@@ -65,10 +61,10 @@ class Window:
         size = (self.dim[0],650);
         self.combat_surface = get_combat_surface(size)
         
-    def generateCityAndLinks():
+    def generateCityAndLinks(self):
         print("Generating cities and links...")
             
-    def drawCityAndLinks():
+    def drawCityAndLinks(self):
         print("Drawing cities and links...")
     
     
@@ -77,7 +73,7 @@ class Window:
         for object in windowObjects:
             object.process(self.screen)
         
-        self.screen.blit(self.game_surface, (0, 0))
+        self.screen.blit(self.combat_surface, (0, 0))
         self.drawCityAndLinks()
         
         pygame.display.update()
