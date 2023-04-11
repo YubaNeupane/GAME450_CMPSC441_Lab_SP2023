@@ -44,7 +44,6 @@ class Window:
         
         generateSurfaceButton = Button(30, 730, 200, 50, 'Regenerate Surface', self.generateLandScape)
         
-        
         windowObjects.append(startButton)
         windowObjects.append(generateSurfaceButton)
         windowObjects.append(quitGameButton)
@@ -62,6 +61,7 @@ class Window:
     def generateCombatSurface(self):
         size = (self.dim[0],650);
         self.combat_surface = get_combat_surface(size)
+        self.generateCityAndLinks()
         
     def generateCityAndLinks(self):
         print("Generating cities and links...")
@@ -69,9 +69,10 @@ class Window:
         self.gameManager.generateCityLinks((self.dim[0],650))
             
     def drawCityAndLinks(self):
-        print("Drawing cities and links...")
+        color = (255,255,255)
+        for name in self.gameManager.cityNames:
+            pygame.draw.rect(self.game_surface, color, pygame.Rect(self.gameManager.city_locations_dict.get(name)[0], self.gameManager.city_locations_dict.get(name)[1], 10, 10))
         
-    
     
     #RUN THE GAME EVERY FRAME
     def process(self):
@@ -79,7 +80,7 @@ class Window:
             object.process(self.screen)
         
         self.screen.blit(self.game_surface, (0, 0))
-        # self.drawCityAndLinks()
+        self.drawCityAndLinks()
         
-        pygame.display.update()
+        pygame.display.flip()
         

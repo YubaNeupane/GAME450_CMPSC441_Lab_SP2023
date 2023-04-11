@@ -10,6 +10,7 @@ class GameManager:
          self.citites = [];
          self.cityNames = []
          self.routes = []
+         self.city_locations_dict = None
          
     #TODO: FIX THIS SHIT!
     def generateCityNames(self, numberOfCities):
@@ -34,8 +35,8 @@ class GameManager:
         random.shuffle(self.routes)
         self.routes = self.routes[:10]
         
-        print(self.routes)
+        self.city_locations_dict = {name: location for name, location in zip(self.cityNames, self.cities)}
     
-    
+        
     def generateStory(self):
         print("Generating story...")
