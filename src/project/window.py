@@ -44,7 +44,6 @@ class Window:
 
 
         
- 
     def regenereateButtonPress(self):
         if(self.generateTerrainThread == None):
             print("Regenereating Terrain")
