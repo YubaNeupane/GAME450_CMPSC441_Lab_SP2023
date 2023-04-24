@@ -1,6 +1,8 @@
 import sys
 
 import pygame
+from pygame.locals import *
+
 pygame.init()
 pygame.font.init()
 import threading
@@ -26,7 +28,9 @@ class Window:
         self.game_surface = None
         self.isRunning = True
         self.dim = dim
-        self.screen = pygame.display.set_mode(dim)
+        self.screen = pygame.display.set_mode(dim, flags=DOUBLEBUF)
+        self.screen.set_alpha(None)
+
         pygame.display.set_caption('Game 450 Project')
         self.screen.fill(background_color)
 
@@ -41,7 +45,6 @@ class Window:
         
         self.generateCityAndLinks()
         self.makeButtons()
-
 
         
     def regenereateButtonPress(self):

@@ -21,16 +21,21 @@ game_font = pygame.font.SysFont("Comic Sans MS", 15)
 
 
 def get_landscape_surface(size):
+    print(size)
     landscape = get_landscape(size)
     print("Created a landscape of size", landscape.shape)
-    pygame_surface = pygame.surfarray.make_surface(landscape[:, :, :3])
+    pygame_surface = pygame.surfarray.make_surface(landscape[..., :3])
+    pygame_surface = pygame_surface.convert()
     return pygame_surface
 
 
 def get_combat_surface(size):
+    print(size)
+
     landscape = get_combat_bg(size)
     print("Created a landscape of size", landscape.shape)
-    pygame_surface = pygame.surfarray.make_surface(landscape[:, :, :3])
+    pygame_surface = pygame.surfarray.make_surface(landscape[..., :3])
+    pygame_surface = pygame_surface.convert()
     return pygame_surface
 
 
