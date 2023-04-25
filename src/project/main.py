@@ -8,7 +8,7 @@ import pygame
 from GameManager import GameManager
 
 
-gameManager = GameManager()
+gameManager = GameManager((800,650))
 gameWindow = Window((800,800), gameManager)
 
 def startPyGameLoop():

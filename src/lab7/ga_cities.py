@@ -96,7 +96,7 @@ def setup_GA(fitness_fn, n_cities, size):
     :param size: The size of the grid
     :return: The fitness function and the GA instance.
     """
-    num_generations = 300
+    num_generations = 20
     num_parents_mating = 10
 
     solutions_per_population = 500
@@ -171,6 +171,7 @@ if __name__ == "__main__":
     elevation = get_elevation(size);
     # normalize landscape
     elevation = np.array(elevation)
+
     elevation = (elevation - elevation.min()) / (elevation.max() - elevation.min())
     landscape_pic = elevation_to_rgba(elevation)
 

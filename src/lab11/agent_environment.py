@@ -9,8 +9,9 @@ import random
 from lab11.sprite import Sprite
 from lab11.pygame_combat import run_pygame_combat
 from lab11.pygame_human_player import PyGameHumanPlayer
-from lab11.landscape import get_landscape, get_combat_bg
+from lab11.landscape import get_landscape, get_combat_bg, get_elevation, elevation_to_rgba
 from lab11.pygame_ai_player import PyGameAIPlayer
+import numpy as np
 
 
 
@@ -29,11 +30,15 @@ def get_landscape_surface(size, new=False):
         loaded_surface = pygame.image.load("landscapesurface.png")
         print("Loaded landscape surface")
         return loaded_surface
-        
-    landscape = get_landscape(size)
+    
+    elevation = get_elevation(size);
+    landscape = elevation_to_rgba(elevation)
     pygame_surface = pygame.surfarray.make_surface(landscape[..., :3])
     pygame_surface = pygame_surface.convert()
     pygame.image.save(pygame_surface, "landscapesurface.png")
+    with open('landscapeElevation.npy', 'wb') as f:
+        np.save(f,elevation);
+        print("elevation saved")
 
     return pygame_surface
     
