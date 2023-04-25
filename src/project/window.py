@@ -20,7 +20,6 @@ background_color = (0,0,0)
 
 windowObjects = [];
 
-
 class Window:
     def __init__(self, dim:tuple, gameManager: GameManager):
         self.gameManager = gameManager
