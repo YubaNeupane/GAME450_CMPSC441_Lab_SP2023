@@ -50,7 +50,7 @@ class Window:
     def regenereateButtonPress(self):
         if(self.generateTerrainThread == None):
             print("Regenereating Terrain")
-            self.generateTerrainThread = threading.Thread(target=self.generateLandScape, args=())
+            self.generateTerrainThread = threading.Thread(target=self.generateLandScape, args=([True]))
             self.generateTerrainThread.start()
             
     def makeButtons(self):
@@ -69,9 +69,9 @@ class Window:
     def startGameFunction(self):
         print("START GAME")
         
-    def generateLandScape(self):
+    def generateLandScape(self, new=False):
         size = (self.dim[0],650);
-        self.game_surface = get_landscape_surface(size)
+        self.game_surface = get_landscape_surface(size, new)
         self.generateCityAndLinks()
         
     def generateCombatSurface(self):

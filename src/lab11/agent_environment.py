@@ -21,13 +21,15 @@ pygame.font.init()
 game_font = pygame.font.SysFont("Comic Sans MS", 15)
 
 
-def get_landscape_surface(size):
+def get_landscape_surface(size, new=False):
     print("Created a landscape of size", size)
 
-    if os.path.exists("landscapesurface.png"):
-        loaded_surface = pygame.image.load("landscapesurface.png")
-        return loaded_surface
 
+    if not new  and os.path.exists("landscapesurface.png"):
+        loaded_surface = pygame.image.load("landscapesurface.png")
+        print("Loaded landscape surface")
+        return loaded_surface
+        
     landscape = get_landscape(size)
     pygame_surface = pygame.surfarray.make_surface(landscape[..., :3])
     pygame_surface = pygame_surface.convert()
