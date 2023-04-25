@@ -44,7 +44,7 @@ class GameManager:
         fitness = lambda cities, idx: game_fitness(
             cities, idx, elevation=self.elevation, size=self.size
         )
-        fitness_function, ga_instance = setup_GA(fitness, self.n_cities, self.size)
+        _, ga_instance = setup_GA(fitness, self.n_cities, self.size)
         ga_instance.run()
         cities = ga_instance.best_solution()[0]
         cities = solution_to_cities(cities, self.size)
