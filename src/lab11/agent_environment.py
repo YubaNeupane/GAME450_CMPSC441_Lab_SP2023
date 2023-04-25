@@ -1,4 +1,5 @@
 import sys
+import os
 from pathlib import Path
 
 sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
@@ -21,21 +22,31 @@ game_font = pygame.font.SysFont("Comic Sans MS", 15)
 
 
 def get_landscape_surface(size):
-    print(size)
+    print("Created a landscape of size", size)
+
+    if os.path.exists("landscapesurface.png"):
+        loaded_surface = pygame.image.load("landscapesurface.png")
+        return loaded_surface
+
     landscape = get_landscape(size)
-    print("Created a landscape of size", landscape.shape)
     pygame_surface = pygame.surfarray.make_surface(landscape[..., :3])
     pygame_surface = pygame_surface.convert()
-    return pygame_surface
+    pygame.image.save(pygame_surface, "landscapesurface.png")
 
+    return pygame_surface
+    
 
 def get_combat_surface(size):
-    print(size)
 
+    if os.path.exists("combatsurface.png"):
+        loaded_surface = pygame.image.load("combatsurface.png")
+        return loaded_surface
+    
     landscape = get_combat_bg(size)
-    print("Created a landscape of size", landscape.shape)
+    print("Created a combat_surface of size", landscape.shape)
     pygame_surface = pygame.surfarray.make_surface(landscape[..., :3])
     pygame_surface = pygame_surface.convert()
+    pygame.image.save(pygame_surface, "combatsurface.png")
     return pygame_surface
 
 
