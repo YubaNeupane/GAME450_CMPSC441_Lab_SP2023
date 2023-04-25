@@ -9,7 +9,7 @@ class PyGameAIPlayer:
         pass;
         
     def selectAction(self, state):
-        return ord(str((state.current_city+random.randint(0, 10))%10)) 
+        return random.randint(0, 9)
 
 
 """ Create PyGameAICombatPlayer class here"""
