@@ -84,9 +84,21 @@ class Window:
         self.gameManager.generateCityLinks((self.dim[0],650))
             
     def drawCityAndLinks(self):
-        color = (255,255,255)
+        colorCity = (255,255,255)
+        colorLine = (0,0,255)
+        my_font = pygame.font.SysFont('Comic Sans MS', 20)
+    
+        for route in self.gameManager.routes:
+            pygame.draw.line(self.game_surface,colorLine,route[0], route[1], 2)
+
+
         for name in self.gameManager.cityNames:
-            pygame.draw.rect(self.game_surface, color, pygame.Rect(self.gameManager.city_locations_dict.get(name)[0], self.gameManager.city_locations_dict.get(name)[1], 10, 10))
+            x = self.gameManager.city_locations_dict.get(name)[0]
+            y = self.gameManager.city_locations_dict.get(name)[1]
+            pygame.draw.rect(self.game_surface, colorCity, pygame.Rect(x,y, 10, 10))
+            text_surface = my_font.render(name, False, (0, 0, 0))
+            self.screen.blit(text_surface, (x+20,y))
+        
         
     def showGeneratingText(self):
         if self.isGenerating:
@@ -106,7 +118,7 @@ class Window:
                 self.generateTerrainThread = None
                 self.isGenerating = False
 
-        if self.game_surface != None:
+        if self.game_surface != None and not self.isGenerating:
             self.screen.blit(self.game_surface, (0, 0))
             self.drawCityAndLinks()
 

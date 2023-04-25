@@ -55,13 +55,14 @@ class GameManager:
         print("Generating city links...")
         self.cities = self.generateCities()
 
+        print(self.cities.shape)
+
         self.routes = get_routes(self.cities)
         random.shuffle(self.routes)
         self.routes = self.routes[:10]
 
         self.city_locations_dict = {
             name: location for name, location in zip(self.cityNames, self.cities)}
-        print(self.city_locations_dict)
 
     def generateStory(self):
         print("Generating story...")

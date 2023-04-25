@@ -37,7 +37,7 @@ def checkDistribution(currentCity, otherCityes):
     #checks the distance between the current and the other cities and if its less then 30 units away it gives it a less fitness score 
     for (otherX, otherY) in otherCityes:
         distance = math.sqrt(((otherX - currentCity[0]) ** 2)+((otherY-currentCity[1]) ** 2));
-        if(distance <= 30):
+        if(distance <= 80):
             fitness =  0.000000001
         else:
              fitness += 0.01
