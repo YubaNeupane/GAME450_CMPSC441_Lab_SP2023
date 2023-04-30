@@ -148,7 +148,7 @@ if __name__ == "__main__":
                     "Travelling from", state.current_city, "to", state.destination_city
                 )
 
-        screen.fill(black)
+        screen.fill((0,0,0))
         screen.blit(landscape_surface, (0, 0))
 
         for city in cities:

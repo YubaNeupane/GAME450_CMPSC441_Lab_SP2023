@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 import json
 
-
 load_dotenv()
 
 
@@ -22,3 +21,61 @@ def generateCityNames(numberOfCities):
     
     return json.loads(completion.choices[0].message.content)
 
+
+def generateMeJournalStory(events):
+    message = "write me a short joural about AIAgent going to a joural to a city where he starts from the city \'" + events["start"] +"\'" + " and has to travel to city of \'"+ events['end'] +"\'"
+    message += "as he travel and began his journey he travel to various of the cities, he travel to "
+
+    for journey in events["journey"]:
+        message += "\'"+journey["To"] + "\' from \'" + journey["From"] + "\'"
+
+        if journey['Event'] != None:
+            message += "where he got in a " + journey['Event']['type'] + ' and ';
+            if (journey['Event']['won']):
+                message += "won "
+            else:
+                message += "lost "
+            message += "gaining " + str(journey['Event']['gained']) + " coins "
+
+        message += ". Then, ";
+
+    message += "write it like a joural with dear and first person."
+
+    completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                "role": "user",
+                "content": message
+                }
+            ]
+    )
+    return completion.choices[0].message.content;
+
+events = {
+    "start":"New york", 
+    "end":"Pittsbugh", 
+    "journey": [
+        {
+            "From": "New york",
+            "To": "Washington",
+            "Event": None
+        },
+        {
+            "From": "Washington",
+            "To": "Breadford",
+            "Event": {
+                "type": "Battle",
+                "won": True,
+                "gained": 2
+            }
+        },
+        {
+            "From": "Breadford",
+            "To": "Pittsbugh",
+            "Event": None
+        },
+    ]
+}
+
+print(generateMeJournalStory(events))
