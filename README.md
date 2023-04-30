@@ -26,13 +26,9 @@ Include a README.md file that will be your report in the root folder of your pro
 
 # 1. **Abstract**
 
----
-
 The Game 450 project is a unique game that utilizes multiple AI technologies to create an immersive gaming experience. The game is set in a world that is generated using a noise map, with genetic algorithms used to determine the location of cities to ensure they are not in unsuitable locations. The game is fully automated, with AI agents playing the game by themselves to reach their destination city while encountering combat along the way. Additionally, the game incorporates journaling to keep track of player progress and decisions made during gameplay. This journal will be used to generate a story of the player's journey through the game world, utilizing ChatGpt to create a narrative. Finally, a Python library is used to convert the generated story into speech, allowing players to hear their journey read out loud. This game is a perfect example of how multiple AI technologies can be combined to create a unique and engaging gaming experience. Overall, the Game 450 project is a perfect example of how multiple AI technologies can be combined to create a unique and engaging gaming experience. The game's use of genetic algorithms, noise maps, AI agents, and ChatGpt all work together to create a dynamic and engaging world. Players who enjoy a challenge and want an immersive gaming experience should definitely check out the Game 450 project.
 
 # **2. AI Components**
-
----
 
 - Genetic Algorithm for City Placement
 - Reinforcement Learning on AI Agent
@@ -41,11 +37,19 @@ The Game 450 project is a unique game that utilizes multiple AI technologies to 
 
 # **3. Problem Solved**
 
----
+When I first started working on this game, I knew that it would be a challenging project. My goal was to create an immersive and exciting gaming experience for the AI agent that would take them on a journey through different cities and landscapes. To achieve this, I had to come up with a solution for the problem of creating a game that was both challenging and engaging.
+
+The gameplay revolved around the AI agent being presented with a map of the world with multiple cities spread across it. The AI agent starts its journey from a city and has to reach a destination city while managing its budget. Traveling from one city to another costs money, and the amount of money it takes to travel from one city to another depends on the landscape. For instance, traveling through water and mountains costs more than traveling through flat land. To control the amount of money spent on traveling, the AI agent can choose its own route to the destination.
+
+As the AI agent moves from one city to another, there is a good chance that it will encounter an opponent. If the encounter happens, then the AI agent and the opponent will engage in a turn-style combat. If the AI agent loses the combat, the game is over. If the AI agent emerges victorious, it obtains some money that it can use for traveling. However, if the AI agent runs out of money before reaching the destination, the game is over. The ultimate goal of the game is for the AI agent to reach its destination successfully.
+
+To solve this problem, I employed a number of innovative techniques. Firstly, I used a genetic algorithm to optimize the placement of cities on the map. This made the gameplay more challenging and exciting, as the AI agent had to navigate through different terrains and landscapes. Secondly, I utilized reinforcement learning to train an AI agent that would provide an immersive and realistic gaming experience. The AI agent would make decisions based on its actions and provide an engaging challenge for it to overcome.
+
+Additionally, I incorporated the ChatGPT model to generate storylines that would keep the AI agent keep generate the story. The model generated unique and exciting storylines that added to the game's overall novelty and excitement. Finally, I used ChatGPT to generate unique city names that would add to the game's novelty.
+
+Overall, I was successful in creating a game that was both challenging and exciting for the AI agent to engage in. The use of innovative technologies such as genetic algorithms, reinforcement learning, and ChatGPT not only improved the gameplay but also provided a unique and immersive experience for the AI agent.
 
 # **4. Additional Features**
-
----
 
 ## 4.1 City Names Generation
 
@@ -57,8 +61,4 @@ The Game 450 project is a unique game that utilizes multiple AI technologies to 
 
 # 5. **Demo**
 
----
-
-# 6. **Appendix**
-
----
+# **6. Appendix**
