@@ -15,8 +15,6 @@ from GameManager import GameManager
 sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
 
 sprite_path = "assets/lego.png"
-# TODO: THIS FUCKING SHIT
-
 
 class GameEnvironment:
     def __init__(self, state: State, gameManager: GameManager, screen: Surface, landscapeSurface: Surface, combateSurface: Surface, window):

@@ -1,5 +1,3 @@
-# Game 450 Project
-
 There are 3 areas of work on the project due on the final exam day for this course i.e. at 11:59 PM on 5/3/2023. The three areas of work are:
 
 1. (5 pts) Fixing the game by integrating the three components:
@@ -23,3 +21,44 @@ Include a README.md file that will be your report in the root folder of your pro
 3. Problems Solved (provide descriptions about the AI components in the format of problems that they solved)
    ...<Any other sections that you would like to create>
 4. Appendix
+
+# Game 450 Project
+
+# 1. **Abstract**
+
+---
+
+The Game 450 project is a unique game that utilizes multiple AI technologies to create an immersive gaming experience. The game is set in a world that is generated using a noise map, with genetic algorithms used to determine the location of cities to ensure they are not in unsuitable locations. The game is fully automated, with AI agents playing the game by themselves to reach their destination city while encountering combat along the way. Additionally, the game incorporates journaling to keep track of player progress and decisions made during gameplay. This journal will be used to generate a story of the player's journey through the game world, utilizing ChatGpt to create a narrative. Finally, a Python library is used to convert the generated story into speech, allowing players to hear their journey read out loud. This game is a perfect example of how multiple AI technologies can be combined to create a unique and engaging gaming experience. Overall, the Game 450 project is a perfect example of how multiple AI technologies can be combined to create a unique and engaging gaming experience. The game's use of genetic algorithms, noise maps, AI agents, and ChatGpt all work together to create a dynamic and engaging world. Players who enjoy a challenge and want an immersive gaming experience should definitely check out the Game 450 project.
+
+# **2. AI Components**
+
+---
+
+- Genetic Algorithm for City Placement
+- Reinforcement Learning on AI Agent
+- ChatGPT story generations
+- City Name generation using ChatGPT
+
+# **3. Problem Solved**
+
+---
+
+# **4. Additional Features**
+
+---
+
+## 4.1 City Names Generation
+
+## 4.2 City Placement Using Genetic Algorithm
+
+## 4.3 Story Generation (Journaling)
+
+## 4.4. Speech Synthesis
+
+# 5. **Demo**
+
+---
+
+# 6. **Appendix**
+
+---
