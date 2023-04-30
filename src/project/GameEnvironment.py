@@ -7,6 +7,7 @@ from pygame import Surface
 import pygame
 from lab11.agent_environment import State
 from lab11.pygame_ai_player import PyGameAIPlayer
+from lab11.pygame_combat import run_pygame_combat
 from lab11.sprite import Sprite
 from lab11.turn_combat import CombatPlayer
 from GameManager import GameManager
@@ -60,7 +61,8 @@ class GameEnvironment:
 
             if self.state.encounter_event:
                 # TODO: RUN THE RUN_PYGAME_COMBAT
-                self.state.encounter_event = False
+               run_pygame_combat(self.combateSurface, self.screen, self.player_sprite)
+               self.state.encounter_event = False
             else:
                 self.player_sprite.draw_sprite(self.screen)
 
