@@ -1,9 +1,7 @@
 There are 3 areas of work on the project due on the final exam day for this course i.e. at 11:59 PM on 5/3/2023. The three areas of work are:
 
 1. (5 pts) Fixing the game by integrating the three components:
-   a. Incorporate the GA system to make cities spread out realistically.
    b. Implement cost of travel based on the elevation of the terrain.
-   c. Restrict movement between cities without a route.
    c. Fix the gameplay by making the player win or lose the game based on having no money and/or losing the battle. (Synthesis - remaining 5pts of synthesis come from Lab 11: Project Handoff (Task 1) lab )
 
 2. (10 pts) Incorporate one additional AI technique like journalling using text generation models text-to-image generation, speech synthesis, etc. This can be any AI technique that you have learned in class or not. The quality of output is not graded. Only the use and integration are considered for the grade. (Identifying The Right Tool)

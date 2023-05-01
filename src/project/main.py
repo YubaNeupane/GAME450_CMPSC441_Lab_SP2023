@@ -1,6 +1,6 @@
 import sys
-from pathlib import Path
 
+from pathlib import Path
 
 
 from window import Window

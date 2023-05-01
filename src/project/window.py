@@ -28,6 +28,8 @@ background_color = (0, 0, 0)
 
 windowObjects = []
 
+displayObjects = []
+
 
 class Window:
     def __init__(self, dim: tuple, gameManager: GameManager):
@@ -77,7 +79,17 @@ class Window:
 
     def quitGameFunction(self):
         pygame.quit()
-
+    
+    # TODO: DO THIS SHIT 
+    def displayStory(self):
+        pass
+    
+    def playStory(self):
+        pass
+    
+    def displayGameStats(self):
+        pass
+        
     def startGameFunction(self):
         self.isGamePlaying = True
         self.startCity = 0
