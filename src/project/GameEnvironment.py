@@ -48,7 +48,7 @@ class GameEnvironment:
                     "Travelling from", self.state.current_city, "to", self.state.destination_city
                 )
 
-            if not self.gameManager.hasRoute(self.state.current_city, self.state.destination_city) and self.state.travelling:
+            if not self.gameManager.hasRoute(self.state.current_city, self.state.destination_city):
                 self.state.travelling = False
                 continue
             

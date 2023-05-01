@@ -83,6 +83,12 @@ class GameManager:
                 if(link[1][0] == endloc[0] and link[1][1] == endloc[1]):
                     self.routeIteration = 0;
                     return True
+            
+            if(link[1][0] == startloc[0] and link[1][1] == startloc[1]):
+                if(link[0][0] == endloc[0] and link[0][1] == endloc[1]):
+                    self.routeIteration = 0;
+                    return True
+               
         
         self.routeIteration +=1
         return False
