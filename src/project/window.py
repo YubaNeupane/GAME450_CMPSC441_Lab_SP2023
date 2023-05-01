@@ -5,6 +5,10 @@ import threading
 import sys
 from pathlib import Path
 
+from tkinter import *
+from tkinter import messagebox
+
+
 
 
 sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
@@ -27,9 +31,7 @@ pygame.font.init()
 background_color = (0, 0, 0)
 
 windowObjects = []
-
-displayObjects = []
-
+windowObjectsShowAfterGame = []
 
 class Window:
     def __init__(self, dim: tuple, gameManager: GameManager):
@@ -55,6 +57,17 @@ class Window:
 
         self.generateCityAndLinks()
         self.makeButtons()
+                
+        self.displayStoryButton = Button(260, 670, 200, 50, 'Display Story', self.displayStory)
+        self.displayStoryStopButton = Button(260, 730, 200, 50, 'Stop Story', self.displayStory)
+        
+        self.displayGameResultButton = Button(500, 670, 200, 110, 'Show Game Stats', self.displayStory)
+        
+        
+        
+        windowObjectsShowAfterGame.append(self.displayStoryButton)
+        windowObjectsShowAfterGame.append(self.displayStoryStopButton)
+        windowObjectsShowAfterGame.append(self.displayGameResultButton)
         self.isGamePlaying = False
         
 
@@ -72,6 +85,8 @@ class Window:
 
         generateSurfaceButton = Button(
             30, 730, 200, 50, 'Regenerate Surface', self.regenereateButtonPress)
+        
+        
 
         windowObjects.append(startButton)
         windowObjects.append(generateSurfaceButton)
@@ -82,10 +97,17 @@ class Window:
     
     # TODO: DO THIS SHIT 
     def displayStory(self):
-        pass
+        answer = messagebox.askyesno("Question","Dear Journal,I am AI Agent and I have officially started my journey from the city of New York. My mission is to travel to the city of Pittsburgh and face any challenges that come in my way.As I left New York, I made my way towards the city of Washington. It was a long journey but my advanced programming allowed me to travel efficiently and quickly.\n\nDo you like Python?")
+        print(answer)
+        if(answer):
+            self.playStory()
     
     def playStory(self):
+        print("Talking......")
         pass
+    
+    def stopStory(self):
+        pass;
     
     def displayGameStats(self):
         pass
@@ -151,6 +173,10 @@ class Window:
     def process(self):
         for object in windowObjects:
             object.process(self.screen)
+        
+        if(self.gameManager.gameOver):
+            for object in windowObjectsShowAfterGame:
+                object.process(self.screen)
 
         if (self.generateTerrainThread != None):
             if self.generateTerrainThread.is_alive():

@@ -20,6 +20,7 @@ class GameManager:
         self.n_cities = 10
         self.size = size
         self.routeIteration = 0;
+        self.gameOver = False
 
     # TODO: FIX THIS SHIT!
     def generateCityNames(self, numberOfCities):

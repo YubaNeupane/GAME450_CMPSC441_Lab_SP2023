@@ -29,6 +29,8 @@ class GameEnvironment:
         self.spirtSpeed = 1
 
     def startGame(self, player: PyGameAIPlayer):
+        self.gameManager.gameOver = False
+
         while True:
             action = player.selectAction(self.state)
             if(self.gameManager.routeIteration >= 10):
@@ -77,4 +79,5 @@ class GameEnvironment:
             pygame.display.update()
             if self.state.current_city == self.endCity:
                 print("You have reached the end of the game!")
+                self.gameManager.gameOver = True
                 break

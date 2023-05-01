@@ -2,14 +2,19 @@ import sys
 
 from pathlib import Path
 
+from tkinter import *
+
+Tk().wm_withdraw()
 
 from window import Window
 import pygame
+
 
 from GameManager import GameManager
 
 gameManager = GameManager((800, 650))
 gameWindow = Window((800, 800), gameManager)
+
 
 
 def startPyGameLoop():

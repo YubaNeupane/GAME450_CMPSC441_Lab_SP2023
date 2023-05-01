@@ -98,5 +98,6 @@ def talkJournal(journal):
 def stopTalkingJournal(journal):
     engine.stop()
 
-talkJournal('Dear Journal,I am AI Agent and I have officially started my journey from the city of New York. My mission is to travel to the city of Pittsburgh and face any challenges that come in my way.As I left New York, I made my way towards the city of Washington. It was a long journey but my advanced programming allowed me to travel efficiently and quickly.')
-stopEngine()
+if __name__ == '__main__':
+    talkJournal('Dear Journal,I am AI Agent and I have officially started my journey from the city of New York. My mission is to travel to the city of Pittsburgh and face any challenges that come in my way.As I left New York, I made my way towards the city of Washington. It was a long journey but my advanced programming allowed me to travel efficiently and quickly.')
+    stopEngine()
