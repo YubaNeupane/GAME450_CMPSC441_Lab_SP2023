@@ -34,13 +34,13 @@ def generateMeJournalStory(events):
     for journey in events["journey"]:
         message += "\'"+journey["To"] + "\' from \'" + journey["From"] + "\'"
 
-        if journey['Event'] != None:
-            message += "where he got in a " + journey['Event']['type'] + ' and ';
-            if (journey['Event']['won']):
+        for event in journey['Event']:
+            message += "where he got in a " + event["type"] + ' and ';
+            if (event['won']):
                 message += "won "
             else:
                 message += "lost "
-            message += "gaining " + str(journey['Event']['gained']) + " coins "
+            message += "gaining " + str(event['gained']) + " coins. "
 
         message += ". Then, ";
 
