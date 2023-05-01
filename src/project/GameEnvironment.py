@@ -27,12 +27,31 @@ class GameEnvironment:
         self.window = window
         self.endCity = 9
         self.spirtSpeed = 1
+        
+        self.events = {
+            "start": self.gameManager.cityNames[self.state.current_city],
+            "end": self.gameManager.cityNames[self.endCity],
+            "journey": []
+        }
 
     def startGame(self, player: PyGameAIPlayer):
         self.gameManager.gameOver = False
 
+        reset = True
+        
+        journey = {}
+        
         while True:
             action = player.selectAction(self.state)
+            
+            if reset:
+                journey = {
+                    "From":  self.gameManager.cityNames[self.state.current_city],
+                    "To": self.gameManager.cityNames[self.state.destination_city],
+                    "Event": []
+                }
+                reset = False
+          
             if(self.gameManager.routeIteration >= 10):
                 action = self.gameManager.hasRoute(self.state.current_city, self.state.destination_city)
                 
@@ -43,9 +62,11 @@ class GameEnvironment:
                 
                 destination = self.gameManager.cities[self.state.destination_city]
                 
+                
                 self.player_sprite.set_location(
                     self.gameManager.cities[self.state.current_city])
                 self.state.travelling = True
+                journey["From"] = self.gameManager.cityNames[self.state.current_city]
                 print(
                     "Travelling from", self.state.current_city, "to", self.state.destination_city
                 )
@@ -63,16 +84,26 @@ class GameEnvironment:
                     destination, self.spirtSpeed)
                 self.state.encounter_event = random.randint(0, 1000) < 2
                 if not self.state.travelling:
+                    journey["To"] = self.gameManager.cityNames[self.state.destination_city]
                     print("Arrived at", self.state.destination_city)
-
+                    
             if not self.state.travelling:
                 encounter_event = False
                 self.state.current_city = self.state.destination_city
+                self.events["journey"].append(journey)
+                reset = True
+                
 
             if self.state.encounter_event:
                 # TODO: RUN THE RUN_PYGAME_COMBAT
                run_pygame_combat(self.combateSurface, self.screen, self.player_sprite)
+               journey["Event"].append ({
+                   "type": "Battle",
+                   "won": True,
+                   "gained": 2
+               })
                self.state.encounter_event = False
+               
             else:
                 self.player_sprite.draw_sprite(self.screen)
 
@@ -80,4 +111,5 @@ class GameEnvironment:
             if self.state.current_city == self.endCity:
                 print("You have reached the end of the game!")
                 self.gameManager.gameOver = True
+                print(self.events)
                 break
