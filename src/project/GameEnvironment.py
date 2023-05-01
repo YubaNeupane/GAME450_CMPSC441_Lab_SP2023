@@ -31,10 +31,16 @@ class GameEnvironment:
     def startGame(self, player: PyGameAIPlayer):
         while True:
             action = player.selectAction(self.state)
+            if(self.gameManager.routeIteration >= 10):
+                action = self.gameManager.hasRoute(self.state.current_city, self.state.destination_city)
+                
             if 0 <= action != self.state.current_city and not self.state.travelling:
                 start = self.gameManager.cities[self.state.current_city]
+              
                 self.state.destination_city = action
+                
                 destination = self.gameManager.cities[self.state.destination_city]
+                
                 self.player_sprite.set_location(
                     self.gameManager.cities[self.state.current_city])
                 self.state.travelling = True
@@ -42,6 +48,10 @@ class GameEnvironment:
                     "Travelling from", self.state.current_city, "to", self.state.destination_city
                 )
 
+            if not self.gameManager.hasRoute(self.state.current_city, self.state.destination_city) and self.state.travelling:
+                self.state.travelling = False
+                continue
+            
             self.screen.fill((0, 0, 0))
             self.screen.blit(self.landscapeSurface, (0, 0))
             self.window.drawCityAndLinks()

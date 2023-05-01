@@ -19,6 +19,7 @@ class GameManager:
         self.city_locations_dict = None
         self.n_cities = 10
         self.size = size
+        self.routeIteration = 0;
 
     # TODO: FIX THIS SHIT!
     def generateCityNames(self, numberOfCities):
@@ -55,6 +56,36 @@ class GameManager:
         cities = ga_instance.best_solution()[0]
         cities = solution_to_cities(cities, self.size)
         return cities
+    
+    def hasRoute(self, start, end):
+        startloc = self.city_locations_dict[self.cityNames[start]]
+        endloc = self.city_locations_dict[self.cityNames[end]]
+        
+        if(self.routeIteration >= 10):
+            for link in self.routes:
+                if(link[0][0] == startloc[0] and link[0][1] == startloc[1]):
+                    endloc = link[1]
+                    break
+                if(link[1][0] == startloc[0] and link[1][1] == startloc[1]):
+                    endloc = link[0]
+                    break
+
+            i = 0
+            
+            for name in self.cityNames:
+                if self.city_locations_dict[name][0] == endloc[0] and self.city_locations_dict[name][1] == endloc[1]:
+                    self.routeIteration = 0
+                    return i
+                i += 1
+        
+        for link in self.routes:
+            if(link[0][0] == startloc[0] and link[0][1] == startloc[1]):
+                if(link[1][0] == endloc[0] and link[1][1] == endloc[1]):
+                    self.routeIteration = 0;
+                    return True
+        
+        self.routeIteration +=1
+        return False
 
     def generateCityLinks(self, mapsize: tuple):
         print("Generating city links...")
