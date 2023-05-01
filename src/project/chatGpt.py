@@ -2,11 +2,16 @@ import openai
 import os
 from dotenv import load_dotenv
 import json
+import pyttsx3
 
 load_dotenv()
 
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
+
+engine = pyttsx3.init() # object creation
+engine.setProperty('rate', 180)     # setting up new voice rate
+
 
 def generateCityNames(numberOfCities):
     completion = openai.ChatCompletion.create(
@@ -78,4 +83,21 @@ events = {
     ]
 }
 
-print(generateMeJournalStory(events))
+engine.startLoop(False)
+
+def startEngine():
+    engine.startLoop()
+
+def stopEngine():
+    engine.endLoop()
+
+def talkJournal(journal):
+    engine.say(journal)
+    engine.iterate()
+
+def stopTalkingJournal(journal):
+    engine.stop()
+
+talkJournal('Dear Journal,I am AI Agent and I have officially started my journey from the city of New York. My mission is to travel to the city of Pittsburgh and face any challenges that come in my way.As I left New York, I made my way towards the city of Washington. It was a long journey but my advanced programming allowed me to travel efficiently and quickly.')
+stopEngine()
+# print(generateMeJournalStory(events))
