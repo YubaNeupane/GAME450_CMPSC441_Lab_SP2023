@@ -28,6 +28,14 @@ class GameEnvironment:
         self.window = window
         self.endCity = 9
         self.spirtSpeed = 1
+
+        self.stats= {
+            "numberOfEnounters": 0,
+            "gameWon":0,
+            "gameLost":0,
+            "moneyGained": 0,
+            "numberOfCitiesHopped": 0,
+        }
         
         self.events = {
             "start": self.gameManager.cityNames[self.state.current_city],
@@ -79,8 +87,23 @@ class GameEnvironment:
             self.screen.fill((0, 0, 0))
             self.screen.blit(self.landscapeSurface, (0, 0))
             self.window.drawCityAndLinks()
+            self.window.displayMoney()
 
-            if  self.state.travelling:
+            if self.state.travelling:
+                value = (float(self.gameManager.getElevation(int(self.player_sprite.sprite_pos[0]),int(self.player_sprite.sprite_pos[1]))))
+
+                if(value > 0.53):
+                    self.gameManager.money -= (value - 0.4)
+                
+                if self.gameManager.money <= 0:
+                    journey["Event"].append ({
+                        "type": "No Money Left",
+                        "won": False,
+                        "gained": -100
+                    })
+                    self.events["journey"].append(journey)
+                    self.gameManager.gameOver = True
+          
                 self.state.travelling = self.player_sprite.move_sprite(
                     destination, self.spirtSpeed)
                 self.state.encounter_event = random.randint(0, 1000) < 2
@@ -101,10 +124,10 @@ class GameEnvironment:
                 won = True
                 if Phealth > 0:
                    won = True
-                   self.gameManager.money += 10
+                   self.gameManager.money += 5.0
                 else:
                     won = False
-                    self.gameManager.money -= 10
+                    self.gameManager.money -= 10.0
 
 
                 if self.gameManager.money <= 0:

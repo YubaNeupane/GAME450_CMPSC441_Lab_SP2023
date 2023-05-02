@@ -24,7 +24,7 @@ class GameManager:
         self.routeIteration = 0;
         self.gameOver = False
         self.jounralStory = ""
-        self.money = 100
+        self.money = 100.0
 
     # TODO: FIX THIS SHIT!
     def generateCityNames(self, numberOfCities):
@@ -64,6 +64,9 @@ class GameManager:
         cities = solution_to_cities(cities, self.size)
         return cities
     
+    def getElevation(self, x, y):
+        return self.elevation[x][y]
+
     def hasRoute(self, start, end):
         startloc = self.city_locations_dict[self.cityNames[start]]
         endloc = self.city_locations_dict[self.cityNames[end]]

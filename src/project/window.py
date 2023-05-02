@@ -116,6 +116,7 @@ class Window:
         self.tts_thread.stop = True
     
     def displayGameStats(self):
+        answer = messagebox.INFO(str(self.gameEnvironment.events))
         pass
         
     def startGameFunction(self):
@@ -168,6 +169,11 @@ class Window:
             text_surface = my_font.render(name, False, (0, 0, 0))
             self.screen.blit(text_surface, (x+20, y))
 
+    def displayMoney(self):
+        my_font = pygame.font.SysFont('Comic Sans MS', 20)
+        text_surface = my_font.render("Money: " + str(self.gameManager.money), False, (255, 0, 0))
+        self.screen.blit(text_surface, (10, 10))
+
     def showGeneratingText(self):
         if self.isGenerating:
             my_font = pygame.font.SysFont('Comic Sans MS', 90)
@@ -194,6 +200,7 @@ class Window:
         if self.game_surface != None and not self.isGenerating and not self.isGamePlaying:
             self.screen.blit(self.game_surface, (0, 0))
             self.drawCityAndLinks()
+            self.displayMoney()
 
         self.showGeneratingText()
         pygame.display.flip()
