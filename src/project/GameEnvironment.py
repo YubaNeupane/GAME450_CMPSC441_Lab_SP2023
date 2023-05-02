@@ -33,8 +33,10 @@ class GameEnvironment:
             "numberOfEnounters": 0,
             "gameWon":0,
             "gameLost":0,
-            "moneyGained": 0,
+            "moneyGained": 0.0,
             "numberOfCitiesHopped": 0,
+            "finalMoney": 0.0,
+            "winGame": False
         }
         
         self.events = {
@@ -110,6 +112,7 @@ class GameEnvironment:
                 if not self.state.travelling:
                     journey["To"] = self.gameManager.cityNames[self.state.destination_city]
                     print("Arrived at", self.state.destination_city)
+                    self.stats["numberOfCitiesHopped"] += 1
                     
             if not self.state.travelling:
                 encounter_event = False
@@ -120,14 +123,19 @@ class GameEnvironment:
 
             if self.state.encounter_event:
                 # TODO: RUN THE RUN_PYGAME_COMBAT
+                self.stats["numberOfEnounters"] += 1
                 (Phealth, Ohealth, reward) = run_pygame_combat(self.combateSurface, self.screen, self.player_sprite)
                 won = True
                 if Phealth > 0:
                    won = True
-                   self.gameManager.money += 5.0
+                   self.stats["gameWon"] += 1
+                   self.gameManager.money += 10.0
+                   self.stats["moneyGained"] += 10.0
                 else:
                     won = False
-                    self.gameManager.money -= 10.0
+                    self.stats["gameLost"] += 1
+                    self.gameManager.money -= 5.0
+                    self.stats["moneyGained"] -= 5.0
 
 
                 if self.gameManager.money <= 0:
@@ -146,9 +154,17 @@ class GameEnvironment:
                 self.player_sprite.draw_sprite(self.screen)
 
             pygame.display.update()
-            if self.state.current_city == self.endCity or self.gameManager.gameOver:
+            if(self.gameManager.gameOver):
+                self.stats["winGame"] = False
+                self.gameManager.gameOver = True
+                self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
+                # self.gameManager.jounralStory = generateMeJournalStory(self.events)
+                break
+
+            if self.state.current_city == self.endCity:
                 print("You have reached the end of the game!")
                 self.gameManager.gameOver = True
+                self.stats["winGame"] = True
                 self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
                 # self.gameManager.jounralStory = generateMeJournalStory(self.events)
                 break
