@@ -43,7 +43,7 @@ Overall, I was successful in creating a game that was both challenging and excit
 
 # **4. Additional Features** <a id="AdditionalFeatures"></a>
 
-## 4.1 City Names Generation <a id="CityNames"></a>
+## 4.1 City Names Generation <div id="CityNames"></div>
 
 ```python
 def generateCityNames(numberOfCities):
