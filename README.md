@@ -1,16 +1,17 @@
 # Game 450 Project
 
-1. [Abstract](#Abstract)
-2. [AI Components](#AIComponents)
-3. [Problem Solved](#ProblemSolved)
-4. [Additional Features](#AdditionalFeatures)
-   - 4.1. [City Names Generation](#CityNames)
-   - 4.2. [City Placement Using Genetic Algorithm](#CityPlacement)
-   - 4.3. [Story Generation (Journaling)](#Story)
-   - 4.4. [Speech Synthesis](#Speech)
-5. [Demo](#Demo)
-6. [Appendix](#Appendix)
-7. [References](#References)
+- [Prerequisite](#prerequisite)
+- [1. **Abstract** <a id="Abstract"></a>](#1---abstract----a-id--abstract----a-)
+- [**2. AI Components** <a id="AIComponents"></a>](#--2-ai-components----a-id--aicomponents----a-)
+- [**3. Problem Solved** <a id="ProblemSolved"></a>](#--3-problem-solved----a-id--problemsolved----a-)
+- [**4. Additional Features** <a id="AdditionalFeatures"></a>](#--4-additional-features----a-id--additionalfeatures----a-)
+  * [4.1 City Names Generation <a id="CityNames"></a>](#41-city-names-generation--a-id--citynames----a-)
+  * [4.2 City Placement Using Genetic Algorithm <a id="CityPlacement"></a>](#42-city-placement-using-genetic-algorithm--a-id--cityplacement----a-)
+  * [4.3 Story Generation (Journaling) <a id="Story"></a>](#43-story-generation--journaling---a-id--story----a-)
+  * [4.4 Speech Synthesis <a id="Speech"></a>](#44-speech-synthesis--a-id--speech----a-)
+- [5. **Demo** <a id="Demo"></a>](#5---demo----a-id--demo----a-)
+- [**6. Appendix** <a id="Appendix"></a>](#--6-appendix----a-id--appendix----a-)
+- [**7. References** <a id="References"></a>](#--7-references----a-id--references----a-)
 
 # Prerequisite
 
