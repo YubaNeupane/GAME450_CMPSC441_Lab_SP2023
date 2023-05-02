@@ -29,19 +29,19 @@ class GameManager:
     # TODO: FIX THIS SHIT!
     def generateCityNames(self, numberOfCities):
         print("Generating city names...")
-        # self.cityNames = generateCityNames(self.n_cities)
-        self.cityNames = [
-            "Morkomasto",
-            "Morathrad",
-            "Eregailin",
-            "Corathrad",
-            "Eregarta",
-            "Numensari",
-            "Rhunkadi",
-            "Londathrad",
-            "Baernlad",
-            "Forthyr",
-        ]
+        self.cityNames = generateCityNames(self.n_cities)
+        # self.cityNames = [
+        #     "Morkomasto",
+        #     "Morathrad",
+        #     "Eregailin",
+        #     "Corathrad",
+        #     "Eregarta",
+        #     "Numensari",
+        #     "Rhunkadi",
+        #     "Londathrad",
+        #     "Baernlad",
+        #     "Forthyr",
+        # ]
         
 
     def generateCities(self):

@@ -96,7 +96,7 @@ class GameEnvironment:
                 value = (float(self.gameManager.getElevation(int(self.player_sprite.sprite_pos[0]),int(self.player_sprite.sprite_pos[1]))))
 
                 if(value > 0.65):
-                    self.gameManager.money -= (value - 0.56)
+                    self.gameManager.money -= (value - 0.6482)
                 
                 if self.gameManager.money <= 0:
                     journey["Event"].append ({
@@ -159,14 +159,14 @@ class GameEnvironment:
             if(self.gameManager.gameOver):
                 self.stats["winGame"] = False
                 self.gameManager.gameOver = True
-                self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
-                # self.gameManager.jounralStory = generateMeJournalStory(self.events)
+                # self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
+                self.gameManager.jounralStory = generateMeJournalStory(self.events)
                 break
 
             if self.state.current_city == self.endCity:
                 print("You have reached the end of the game!")
                 self.gameManager.gameOver = True
                 self.stats["winGame"] = True
-                self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
-                # self.gameManager.jounralStory = generateMeJournalStory(self.events)
+                # self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
+                self.gameManager.jounralStory = generateMeJournalStory(self.events)
                 break

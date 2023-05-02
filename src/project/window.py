@@ -84,6 +84,7 @@ class Window:
             self.generateTerrainThread = threading.Thread(
                 target=self.generateLandScape, args=([True]))
             self.generateTerrainThread.start()
+            self.gameManager.generateCityNames(10)
 
     def makeButtons(self):
         startButton = Button(30, 670, 90, 50, 'Start', self.startGameFunction)
@@ -119,6 +120,10 @@ class Window:
         stats = self.gameEnvironment.stats
 
         message = "Number of Enounters: " + str(stats["numberOfEnounters"]) + "\nBattle Won: " + str(stats["gameWon"]) +"\nBattle Lost: " + str(stats["gameLost"]) + "\nMoney Gained: " + str(stats["moneyGained"]) + "\nFinal Money: " + str(stats["finalMoney"])
+        if(stats["winGame"]):
+            message += "\nGame WON!!!"
+        else:
+            message += "\nGame LOST!!!"
 
         answer = messagebox.showinfo(title="Game Stats", message= message)
         pass
