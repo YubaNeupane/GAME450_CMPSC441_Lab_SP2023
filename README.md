@@ -1,6 +1,6 @@
 # Game 450 Project
 
-- [Game 450 Project](#game-450-project)
+<!-- - [Game 450 Project](#game-450-project)
 - [Prerequisite](#prerequisite)
 - [1. **Abstract**](#1---abstract--)
 - [**2. AI Components**](#--2-ai-components--)
@@ -12,7 +12,7 @@
   * [4.4 Speech Synthesis](#44-speech-synthesis)
 - [5. **Demo**](#5---demo--)
 - [**6. Appendix**](#--6-appendix--)
-- [**7. References**](#--7-references--)
+- [**7. References**](#--7-references--) -->
 
 
 # Prerequisite
