@@ -97,21 +97,35 @@ class GameEnvironment:
 
             if self.state.encounter_event:
                 # TODO: RUN THE RUN_PYGAME_COMBAT
-               run_pygame_combat(self.combateSurface, self.screen, self.player_sprite)
-               journey["Event"].append ({
-                   "type": "Battle",
-                   "won": True,
-                   "gained": 2
-               })
-               self.state.encounter_event = False
-               
+                (Phealth, Ohealth, reward) = run_pygame_combat(self.combateSurface, self.screen, self.player_sprite)
+                won = True
+                if Phealth > 0:
+                   won = True
+                   self.gameManager.money += 10
+                else:
+                    won = False
+                    self.gameManager.money -= 10
+
+
+                if self.gameManager.money <= 0:
+                    journey["Event"].append ({
+                        "type": "No Money Left",
+                        "won": False,
+                        "gained": -100
+                    })
+                    self.events["journey"].append(journey)
+                    self.gameManager.gameOver = True
+
+
+                self.state.encounter_event = False
+                                
             else:
                 self.player_sprite.draw_sprite(self.screen)
 
             pygame.display.update()
-            if self.state.current_city == self.endCity:
+            if self.state.current_city == self.endCity or self.gameManager.gameOver:
                 print("You have reached the end of the game!")
                 self.gameManager.gameOver = True
                 self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
-                self.gameManager.jounralStory = generateMeJournalStory(self.events)
+                # self.gameManager.jounralStory = generateMeJournalStory(self.events)
                 break

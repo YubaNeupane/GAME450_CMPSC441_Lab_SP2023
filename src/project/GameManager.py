@@ -24,23 +24,24 @@ class GameManager:
         self.routeIteration = 0;
         self.gameOver = False
         self.jounralStory = ""
+        self.money = 100
 
     # TODO: FIX THIS SHIT!
     def generateCityNames(self, numberOfCities):
         print("Generating city names...")
-        self.cityNames = generateCityNames(self.n_cities)
-        # self.cityNames = [
-        #     "Morkomasto",
-        #     "Morathrad",
-        #     "Eregailin",
-        #     "Corathrad",
-        #     "Eregarta",
-        #     "Numensari",
-        #     "Rhunkadi",
-        #     "Londathrad",
-        #     "Baernlad",
-        #     "Forthyr",
-        # ]
+        # self.cityNames = generateCityNames(self.n_cities)
+        self.cityNames = [
+            "Morkomasto",
+            "Morathrad",
+            "Eregailin",
+            "Corathrad",
+            "Eregarta",
+            "Numensari",
+            "Rhunkadi",
+            "Londathrad",
+            "Baernlad",
+            "Forthyr",
+        ]
         
 
     def generateCities(self):

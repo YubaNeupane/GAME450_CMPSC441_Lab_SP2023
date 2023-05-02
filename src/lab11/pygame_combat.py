@@ -38,7 +38,7 @@ def draw_combat_on_screen(combat_surface, screen, player_sprite, opponent_sprite
     pygame.display.update()
 
 
-def run_turn(currentGame, player, opponent, debug=True) -> tuple:
+def run_turn(currentGame, player, opponent, debug=False) -> tuple:
     players = [player, opponent]
     
     
@@ -100,11 +100,12 @@ def run_pygame_combat(combat_surface, screen, player_sprite):
         AI_SPRITE_PATH, (player_sprite.sprite_pos[0] - 100, player_sprite.sprite_pos[1])
     )
 
-
+    ending = ()
     # Main Game Loop
     while not currentGame.gameOver:
         draw_combat_on_screen(combat_surface, screen, player_sprite, opponent_sprite)
 
-        run_turn(currentGame, player, opponent)
+        ending = run_turn(currentGame, player, opponent)
 
+    return ending
 
