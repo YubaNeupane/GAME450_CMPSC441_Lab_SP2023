@@ -1,17 +1,19 @@
 # Game 450 Project
 
+- [Game 450 Project](#game-450-project)
 - [Prerequisite](#prerequisite)
-- [1. **Abstract** <a id="Abstract"></a>](#1---abstract----a-id--abstract----a-)
-- [**2. AI Components** <a id="AIComponents"></a>](#--2-ai-components----a-id--aicomponents----a-)
-- [**3. Problem Solved** <a id="ProblemSolved"></a>](#--3-problem-solved----a-id--problemsolved----a-)
-- [**4. Additional Features** <a id="AdditionalFeatures"></a>](#--4-additional-features----a-id--additionalfeatures----a-)
-  * [4.1 City Names Generation <a id="CityNames"></a>](#41-city-names-generation--a-id--citynames----a-)
-  * [4.2 City Placement Using Genetic Algorithm <a id="CityPlacement"></a>](#42-city-placement-using-genetic-algorithm--a-id--cityplacement----a-)
-  * [4.3 Story Generation (Journaling) <a id="Story"></a>](#43-story-generation--journaling---a-id--story----a-)
-  * [4.4 Speech Synthesis <a id="Speech"></a>](#44-speech-synthesis--a-id--speech----a-)
-- [5. **Demo** <a id="Demo"></a>](#5---demo----a-id--demo----a-)
-- [**6. Appendix** <a id="Appendix"></a>](#--6-appendix----a-id--appendix----a-)
-- [**7. References** <a id="References"></a>](#--7-references----a-id--references----a-)
+- [1. **Abstract**](#1---abstract--)
+- [**2. AI Components**](#--2-ai-components--)
+- [**3. Problem Solved**](#--3-problem-solved--)
+- [**4. Additional Features**](#--4-additional-features--)
+  * [4.1 City Names Generation](#41-city-names-generation)
+  * [4.2 City Placement Using Genetic Algorithm](#42-city-placement-using-genetic-algorithm)
+  * [4.3 Story Generation (Journaling)](#43-story-generation--journaling-)
+  * [4.4 Speech Synthesis](#44-speech-synthesis)
+- [5. **Demo**](#5---demo--)
+- [**6. Appendix**](#--6-appendix--)
+- [**7. References**](#--7-references--)
+
 
 # Prerequisite
 
