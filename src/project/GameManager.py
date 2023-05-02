@@ -8,8 +8,10 @@ import random
 import numpy as np
 
 
+
 sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
 
+from project.chatGpt import generateCityNames
 
 class GameManager:
     def __init__(self, size):
@@ -21,22 +23,25 @@ class GameManager:
         self.size = size
         self.routeIteration = 0;
         self.gameOver = False
+        self.jounralStory = ""
 
     # TODO: FIX THIS SHIT!
     def generateCityNames(self, numberOfCities):
         print("Generating city names...")
-        self.cityNames = [
-            "Morkomasto",
-            "Morathrad",
-            "Eregailin",
-            "Corathrad",
-            "Eregarta",
-            "Numensari",
-            "Rhunkadi",
-            "Londathrad",
-            "Baernlad",
-            "Forthyr",
-        ]
+        self.cityNames = generateCityNames(self.n_cities)
+        # self.cityNames = [
+        #     "Morkomasto",
+        #     "Morathrad",
+        #     "Eregailin",
+        #     "Corathrad",
+        #     "Eregarta",
+        #     "Numensari",
+        #     "Rhunkadi",
+        #     "Londathrad",
+        #     "Baernlad",
+        #     "Forthyr",
+        # ]
+        
 
     def generateCities(self):
         if os.path.exists("landscapeElevation.npy"):
@@ -61,6 +66,7 @@ class GameManager:
     def hasRoute(self, start, end):
         startloc = self.city_locations_dict[self.cityNames[start]]
         endloc = self.city_locations_dict[self.cityNames[end]]
+        
         
         if(self.routeIteration >= 10):
             for link in self.routes:

@@ -9,8 +9,8 @@ load_dotenv()
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-engine = pyttsx3.init() # object creation
-engine.setProperty('rate', 180)     # setting up new voice rate
+# object creation
+# engine.setProperty('rate', 180)     # setting up new voice rate
 
 
 def generateCityNames(numberOfCities):
@@ -44,7 +44,8 @@ def generateMeJournalStory(events):
 
         message += ". Then, ";
 
-    message += "write it like a joural with dear and first person."
+    message += "write it like a joural with dear and first person. Also make it 250 words only"
+
 
     completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -55,6 +56,8 @@ def generateMeJournalStory(events):
                 }
             ]
     )
+
+    print(completion.choices[0].message.content)
     return completion.choices[0].message.content;
 
 events = {
@@ -83,22 +86,19 @@ events = {
     ]
 }
 
-engine.startLoop(False)
 
-def startEngine():
-    engine.startLoop()
+# engine.startLoop(False)
 
-def stopEngine():
-    engine.endLoop()
 
-def talkJournal(journal):
-    engine.say(journal)
-    engine.iterate()
+# def stopEngine():
+#     engine.endLoop()
 
-def stopTalkingJournal(journal):
-    engine.stop()
+# def talkJournal(journal):
+#     engine.say(journal)
 
-if __name__ == '__main__':
-    
-    talkJournal('Dear Journal,I am AI Agent and I have officially started my journey from the city of New York. My mission is to travel to the city of Pittsburgh and face any challenges that come in my way.As I left New York, I made my way towards the city of Washington. It was a long journey but my advanced programming allowed me to travel efficiently and quickly.')
-    stopEngine()
+# def stopTalkingJournal(journal):
+#     engine.stop()
+
+# if __name__ == '__main__':
+#     talkJournal('Dear Journal,I am AI Agent and I have officially started my journey from the city of New York. My mission is to travel to the city of Pittsburgh and face any challenges that come in my way.As I left New York, I made my way towards the city of Washington. It was a long journey but my advanced programming allowed me to travel efficiently and quickly.')
+#     stopEngine()

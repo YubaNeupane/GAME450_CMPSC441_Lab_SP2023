@@ -11,6 +11,7 @@ from lab11.pygame_combat import run_pygame_combat
 from lab11.sprite import Sprite
 from lab11.turn_combat import CombatPlayer
 from GameManager import GameManager
+from project.chatGpt import generateMeJournalStory
 
 sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
 
@@ -111,5 +112,6 @@ class GameEnvironment:
             if self.state.current_city == self.endCity:
                 print("You have reached the end of the game!")
                 self.gameManager.gameOver = True
-                print(self.events)
+                self.gameManager.jounralStory = "asdsa asd asd asd asdas Hello World"
+                self.gameManager.jounralStory = generateMeJournalStory(self.events)
                 break

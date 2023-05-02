@@ -1,6 +1,7 @@
 from pygame.locals import *
 import pygame
 import threading
+import queue
 
 import sys
 from pathlib import Path
@@ -11,12 +12,15 @@ from tkinter import messagebox
 
 
 
+
+
 sys.path.append(str((Path(__file__) / ".." / "..").resolve().absolute()))
 
 from GameEnvironment import GameEnvironment
 from GameManager import GameManager
 from lab11.agent_environment import State, get_landscape_surface, get_combat_surface
 from lab11.pygame_human_player import PyGameHumanPlayer
+from project.TTSThread import TTSThread
 
 from lab11.pygame_ai_player import PyGameAIPlayer
 
@@ -43,6 +47,9 @@ class Window:
         self.screen = pygame.display.set_mode(dim, flags=DOUBLEBUF)
         self.screen.set_alpha(None)
 
+        self.talkingQueue = queue.Queue()
+        self.tts_thread = TTSThread(self.talkingQueue)  # note: thread is auto-starting
+
         pygame.display.set_caption('Game 450 Project')
         self.screen.fill(background_color)
 
@@ -59,9 +66,9 @@ class Window:
         self.makeButtons()
                 
         self.displayStoryButton = Button(260, 670, 200, 50, 'Display Story', self.displayStory)
-        self.displayStoryStopButton = Button(260, 730, 200, 50, 'Stop Story', self.displayStory)
+        self.displayStoryStopButton = Button(260, 730, 200, 50, 'Stop Story', self.stopStory)
         
-        self.displayGameResultButton = Button(500, 670, 200, 110, 'Show Game Stats', self.displayStory)
+        self.displayGameResultButton = Button(500, 670, 200, 110, 'Show Game Stats', self.displayGameStats)
         
         
         
@@ -97,17 +104,16 @@ class Window:
     
     # TODO: DO THIS SHIT 
     def displayStory(self):
-        answer = messagebox.askyesno("Question","Dear Journal,I am AI Agent and I have officially started my journey from the city of New York. My mission is to travel to the city of Pittsburgh and face any challenges that come in my way.As I left New York, I made my way towards the city of Washington. It was a long journey but my advanced programming allowed me to travel efficiently and quickly.\n\nDo you like Python?")
+        answer = messagebox.askyesno("Question",self.gameManager.jounralStory + "\n\nRead to me?")
         print(answer)
         if(answer):
             self.playStory()
     
     def playStory(self):
-        print("Talking......")
-        pass
+       self.talkingQueue.put(self.gameManager.jounralStory)
     
     def stopStory(self):
-        pass;
+        self.tts_thread.stop = True
     
     def displayGameStats(self):
         pass
