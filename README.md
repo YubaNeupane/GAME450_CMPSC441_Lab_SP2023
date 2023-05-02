@@ -1,43 +1,33 @@
-There are 3 areas of work on the project due on the final exam day for this course i.e. at 11:59 PM on 5/3/2023. The three areas of work are:
-
-1. (5 pts) Fixing the game by integrating the three components:
-   b. Implement cost of travel based on the elevation of the terrain.
-   c. Fix the gameplay by making the player win or lose the game based on having no money and/or losing the battle. (Synthesis - remaining 5pts of synthesis come from Lab 11: Project Handoff (Task 1) lab )
-
-2. (10 pts) Incorporate one additional AI technique like journalling using text generation models text-to-image generation, speech synthesis, etc. This can be any AI technique that you have learned in class or not. The quality of output is not graded. Only the use and integration are considered for the grade. (Identifying The Right Tool)
-
-3. (10 pts) A report clearly demonstrating all of the AI components of the game. The report should describe the problems that each of the AI methods solves. The description should also detail the inputs and outputs of each algorithm, along with a description of the algorithm. (Creative Problem Solving Rubric)
-
-You are encouraged to use ChatGPT and are required to include the transcript of the conversation in your report in an Appendix section. Your report should be at most 3 pages (~1500 words) long excluding the Appendixes.
-
-Please submit a URL to the commit that you want me to consider as the project submission.
-
-Include a README.md file that will be your report in the root folder of your project that is has the following three sections (Total 1500 words excluding the Appendices section).
-
-1. Abstract (250 words)
-2. List of AI components in the project (just list the 3-4 AI components, no description needed)
-3. Problems Solved (provide descriptions about the AI components in the format of problems that they solved)
-   ...<Any other sections that you would like to create>
-4. Appendix
-
 # Game 450 Project
+
+1. [Abstract](#Abstract)
+2. [AI Components](#AIComponents)
+3. [Problem Solved](#ProblemSolved)
+4. [Additional Features](#AdditionalFeatures)
+   4.1 [City Names Generation](#CityNames)
+   4.2 [City Placement Using Genetic Algorithm](#CityPlacement)
+   4.3 [Story Generation (Journaling)](#Story)
+   4.4 [Speech Synthesis](#Speech)
+5. [Demo](#Demo)
+6. [Appendix](#Appendix)
+7. [References](#References)
 
 # Prerequisite
 
 Before using this project, it is necessary to obtain an Open AI API key. Without this key, the project cannot be used to its fullest potential. If you do not have an Open AI API key, one can be found in the comment section of the project submission on Canvas. Once you have the key, add it to the .env file and the project will be ready to use.
 
-# 1. **Abstract**
+# 1. **Abstract** <a id="Abstract"></a>
 
 The Game 450 project is a unique game that utilizes multiple AI technologies to create an immersive gaming experience. The game is set in a world that is generated using a noise map, with genetic algorithms used to determine the location of cities to ensure they are not in unsuitable locations. The game is fully automated, with AI agents playing the game by themselves to reach their destination city while encountering combat along the way. Additionally, the game incorporates journaling to keep track of player progress and decisions made during gameplay. This journal will be used to generate a story of the player's journey through the game world, utilizing ChatGpt to create a narrative. Finally, a Python library is used to convert the generated story into speech, allowing players to hear their journey read out loud. This game is a perfect example of how multiple AI technologies can be combined to create a unique and engaging gaming experience. Overall, the Game 450 project is a perfect example of how multiple AI technologies can be combined to create a unique and engaging gaming experience. The game's use of genetic algorithms, noise maps, AI agents, and ChatGpt all work together to create a dynamic and engaging world. Players who enjoy a challenge and want an immersive gaming experience should definitely check out the Game 450 project.
 
-# **2. AI Components**
+# **2. AI Components** <a id="AIComponents"></a>
 
 - Genetic Algorithm for City Placement
 - Reinforcement Learning on AI Agent
 - ChatGPT story generations
 - City Name generation using ChatGPT
 
-# **3. Problem Solved**
+# **3. Problem Solved** <a id="ProblemSolved"></a>
 
 When I first started working on this game, I knew that it would be a challenging project. My goal was to create an immersive and exciting gaming experience for the AI agent that would take them on a journey through different cities and landscapes. To achieve this, I had to come up with a solution for the problem of creating a game that was both challenging and engaging.
 
@@ -51,9 +41,9 @@ Additionally, I incorporated the ChatGPT model to generate storylines that would
 
 Overall, I was successful in creating a game that was both challenging and exciting for the AI agent to engage in. The use of innovative technologies such as genetic algorithms, reinforcement learning, and ChatGPT not only improved the gameplay but also provided a unique and immersive experience for the AI agent.
 
-# **4. Additional Features**
+# **4. Additional Features** <a id="AdditionalFeatures"></a>
 
-## 4.1 City Names Generation
+## 4.1 City Names Generation <a id="CityNames"></a>
 
 ```python
 def generateCityNames(numberOfCities):
@@ -78,7 +68,7 @@ The function takes in one parameter, **`numberOfCities`**, which specifies the n
 
 The output of the function is a JSON array containing the generated city names. It accomplishes this by parsing the response received from the OpenAI API and extracting the message content as a JSON array.
 
-## 4.2 City Placement Using Genetic Algorithm
+## 4.2 City Placement Using Genetic Algorithm <a id="CityPlacement"></a>
 
 ![  **Figure 4.1:** Initial Cities Before Genetic Algorithm](readme_assets/Untitled.png)
 
@@ -154,7 +144,7 @@ Overall, these functions contribute to a larger genetic algorithm that seeks to 
 
 The _figure 4.3_ depicts the result of applying a genetic algorithm to the placement of cities. The cities in this diagram have been distributed randomly and uniformly across a landmass, without any preference for being placed on top of mountains or bodies of water. As a result, the cities are distributed haphazardly across the land, with no discernible pattern or clustering.
 
-## 4.3 Story Generation (Journaling)
+## 4.3 Story Generation (Journaling) <a id="Story"></a>
 
 1. To create a narrative, I compile a complete record of the game's events, including the AI agent's movements, combat encounters, and other occurrences. This event history is then sent to the ChatGpt API, which generates a journal of the game's story for the user.
 2. I then process storyline involves gathering all of the game's event data, such as the AI agent's travel routes and combat engagements, and transmitting this information to the ChatGpt API. The API then uses this data to generate a detailed journal of the game's events,
@@ -251,7 +241,7 @@ Yours truly,
 AI Agent
 ```
 
-## 4.4 Speech Synthesis
+## 4.4 Speech Synthesis <a id="Speech"></a>
 
 In this project, I plan to use the journal story generated from section 4.3 Story Generation (Journaling) and the "pyttsx3" Python library to create an audio version of the text. With "pyttsx3", I can easily create a script that will convert the written text into spoken words. This library supports various TTS engines, and I can customize the voice, rate, and volume of the audio output.
 
@@ -291,17 +281,25 @@ Here's a breakdown of the code:
 
 Overall, this code sets up a text-to-speech engine using the **`pyttsx3`** library, defines functions for starting and stopping the engine, and provides a function for converting text to speech and stopping the speech output.
 
-# 5. **Demo**
+# 5. **Demo** <a id="Demo"></a>
 
-# **6. Appendix**
+Below, you can find a demonstration video of the project that displays all of the program's features, including a graphical user interface and the game:
+
+[https://youtu.be/B89kiHxliBA](https://youtu.be/B89kiHxliBA)
+
+# **6. Appendix** <a id="Appendix"></a>
 
 ![Figure 6.1: Asked ChatGPT “How to  do text to speech in python”](readme_assets/Untitled%203.png)
 
 Figure 6.1: Asked ChatGPT “How to do text to speech in python”
 
-**Note: I** also used ChatGPT to reword some of my paraph and fix grammar issue
+![Figure 6.2: Asked ChatGPT “How to do make a tinker alert box”](readme_assets/Screenshot_2023-05-01_at_4.00.02_PM.png)
 
-# 7**. References**
+Figure 6.2: Asked ChatGPT “How to do make a tinker alert box”
+
+**Note: I** also used ChatGPT to reword some of my paragraph and fix grammar issue
+
+# **7. References** <a id="References"></a>
 
 1. _How to use CHATGPT with python_ (no date) _CodingTheSmartWay_. Available at: [https://www.codingthesmartway.com/how-to-use-chatgpt-with-python/](https://www.codingthesmartway.com/how-to-use-chatgpt-with-python/)
 2. “PyGAD: An intuitive genetic algorithm Python Library - arXiv.” [Online]. Available: [https://arxiv.org/pdf/2106.06158](https://arxiv.org/pdf/2106.06158).
