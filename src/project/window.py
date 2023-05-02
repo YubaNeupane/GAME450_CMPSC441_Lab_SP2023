@@ -116,7 +116,11 @@ class Window:
         self.tts_thread.stop = True
     
     def displayGameStats(self):
-        answer = messagebox.INFO(str(self.gameEnvironment.events))
+        stats = self.gameEnvironment.stats
+
+        message = "Number of Enounters: " + str(stats["numberOfEnounters"]) + "\nBattle Won: " + str(stats["gameWon"]) +"\nBattle Lost: " + str(stats["gameLost"]) + "\nMoney Gained: " + str(stats["moneyGained"]) + "\nFinal Money: " + str(stats["finalMoney"])
+
+        answer = messagebox.showinfo(title="Game Stats", message= message)
         pass
         
     def startGameFunction(self):

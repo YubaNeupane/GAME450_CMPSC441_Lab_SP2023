@@ -47,6 +47,7 @@ class GameEnvironment:
 
     def startGame(self, player: PyGameAIPlayer):
         self.gameManager.gameOver = False
+        self.gameManager.money = 100.0
 
         reset = True
         
@@ -94,8 +95,8 @@ class GameEnvironment:
             if self.state.travelling:
                 value = (float(self.gameManager.getElevation(int(self.player_sprite.sprite_pos[0]),int(self.player_sprite.sprite_pos[1]))))
 
-                if(value > 0.53):
-                    self.gameManager.money -= (value - 0.4)
+                if(value > 0.65):
+                    self.gameManager.money -= (value - 0.56)
                 
                 if self.gameManager.money <= 0:
                     journey["Event"].append ({
@@ -130,7 +131,7 @@ class GameEnvironment:
                    won = True
                    self.stats["gameWon"] += 1
                    self.gameManager.money += 10.0
-                   self.stats["moneyGained"] += 10.0
+                   self.stats["moneyGained"] += 30.0
                 else:
                     won = False
                     self.stats["gameLost"] += 1
@@ -154,6 +155,7 @@ class GameEnvironment:
                 self.player_sprite.draw_sprite(self.screen)
 
             pygame.display.update()
+            self.stats["finalMoney"] = self.gameManager.money
             if(self.gameManager.gameOver):
                 self.stats["winGame"] = False
                 self.gameManager.gameOver = True
